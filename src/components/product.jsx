@@ -80,3 +80,4 @@ const Product = ({ items, cart, setCart }) => {
 };
 
 export default Product;
+//file changed here
