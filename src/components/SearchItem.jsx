@@ -1,11 +1,13 @@
 // SearchBar.jsx
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
-import { items } from './Data';
-import Product from './product';
+
+import Product from './Product';
+import useGetData from './useGetData';
 
 const SearchItem = ({cart, setCart}) => {
   // console.log(useParams())
+  const items = useGetData()
   const {term} = useParams();
   const [filterData, setFilterData] = useState([]);
 

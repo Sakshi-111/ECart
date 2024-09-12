@@ -4,13 +4,13 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Product = ({ items, cart, setCart }) => {
-  const addToCart = (id, price, title, description, imgSrc) => {
+  const addToCart = (id, price, title, description, image) => {
     const obj = {
       id,
       price,
       title,
       description,
-      imgSrc,
+      image,
     };
     setCart([...cart, obj]);
     console.log("Cart element = ", cart);
@@ -49,7 +49,7 @@ const Product = ({ items, cart, setCart }) => {
                   key={product.id}
                   className="col-lg-4 col-md-6 my-3 text-center"
                 >
-                  <div className="card" style={{ width: "18rem" }}>
+                  <div className="card  hover:bg-gray-300" style={{ width: "18rem" }}>
                     <Link
                       to={`/product/${product.id}`}
                       style={{
@@ -59,8 +59,8 @@ const Product = ({ items, cart, setCart }) => {
                       }}
                     >
                       <img
-                        src={product.imgSrc}
-                        className="card-img-top"
+                        src={product?.image}
+                        className="card-img-top w-40 h-40"
                         alt="..."
                       />
                     </Link>
@@ -77,7 +77,7 @@ const Product = ({ items, cart, setCart }) => {
                             product.price,
                             product.title,
                             product.description,
-                            product.imgSrc
+                            product.image
                           )
                         }
                         className="btn"

@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { items } from './Data'
-import { BsFillCartCheckFill } from 'react-icons/bs';
 
+import { BsFillCartCheckFill } from 'react-icons/bs';
+import useGetData from './useGetData';
 
 
 
 const Navbar = ({setData,cart}) => {
+  const items = useGetData()
   // console.log(useLocation())
   const location = useLocation()
   const navigate = useNavigate();
