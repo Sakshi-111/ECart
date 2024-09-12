@@ -1,37 +1,44 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { items } from "./Data";
+
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Product from "./product";
+import Product from "./Product";
+import useGetData from "./useGetData";
 
 const ProductDetail = ({ cart, setCart }) => {
+  const items = useGetData()
   const { id } = useParams();
 
   const [product, setProduct] = useState({});
   const [relatedProducts, setRelatedProducts] = useState([]);
 
   useEffect(() => {
-    const filterProduct = items.filter((product) => product.id == id);
-    
-    setProduct(filterProduct[0]);
+    if (items.length > 0) {
+      const filterProduct = items.filter((product) => product.id == id);
+      
+      if (filterProduct.length > 0) {
+        setProduct(filterProduct[0]);
+  
+        // Now we use the found product's category for related products
+        const relatedProducts = items.filter(
+          (item) => item.category === filterProduct[0].category && item.id !== filterProduct[0].id
+        );
+        
+        setRelatedProducts(relatedProducts);
+      }
+    }
+  }, [id, items]);
+  
 
-    const relatedProducts = items.filter(
-      (product) => product.category === product.category
-    );
-
-    // console.log("RelatedProduct = ",relatedProducts)
-    setRelatedProducts(relatedProducts);
-  }, [id, product.category]);
-
-  const addToCart = (id, price, title, description, imgSrc) => {
+  const addToCart = (id, price, title, description, image) => {
     const obj = {
       id,
       price,
       title,
       description,
-      imgSrc,
+      image,
     };
     setCart([...cart, obj]);
     console.log("Cart element = ", cart);
@@ -63,7 +70,7 @@ const ProductDetail = ({ cart, setCart }) => {
       />
       <div className="container con">
         <div className="img">
-          <img src={product.imgSrc} alt="..." />
+          <img src={product?.image} alt="..." />
         </div>
         <div className="text-center">
           <h1 className="card-title">{product.title}</h1>
@@ -72,11 +79,11 @@ const ProductDetail = ({ cart, setCart }) => {
           <button
             onClick={() =>
               addToCart(
-                product.id,
-                product.price,
-                product.title,
-                product.description,
-                product.imgSrc
+                product?.id,
+                product?.price,
+                product?.title,
+                product?.description,
+                product?.image
               )
             }
             className="btn btn-warning"

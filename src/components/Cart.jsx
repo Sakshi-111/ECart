@@ -17,10 +17,10 @@ const Cart = ({cart,setCart}) => {
       cart.map((product)=>{
         return(
           <>
-          <div className="card mb-3 my-5" style={{width:'700px'}}>
+          <div key={product.key} className="card mb-3 my-5" style={{width:'700px'}}>
   <div className="row g-0">
     <div className="col-md-4">
-      <img src={product.imgSrc} className="img-fluid rounded-start" alt="..." />
+      <img src={product.image} className="img-fluid rounded-start" alt="..." />
     </div>
     <div className="col-md-8">
       <div className="card-body text-center">
