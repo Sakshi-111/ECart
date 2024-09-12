@@ -6,7 +6,8 @@ import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import SearchItem from './components/SearchItem';
 import useGetData from './components/useGetData';
-import Product from './components/Product';
+import Product from './components/Productt';
+
 
 const App = () => {
   const items = useGetData(); 

@@ -70,29 +70,21 @@ const Navbar = ({setData,cart}) => {
             onClick={()=>setData(items)}
             className="items">No Filter</div>
             <div 
-            onClick={()=>filterByCategory('mobiles')}
-             className="items">Mobiles</div>
+            onClick={()=>filterByCategory("men's clothing")}
+             className="items">Men's</div>
             <div
-            onClick={()=>filterByCategory('laptops')}
+            onClick={()=>filterByCategory("jewelery")}
     
-             className="items">Laptops</div>
+             className="items">Jewelery</div>
             <div
-            onClick={()=>filterByCategory('tablets')}
+            onClick={()=>filterByCategory("electronics")}
     
-             className="items">Tablets</div>
-            <div
-            onClick={()=>filterByPrice(29999)}
-            className="items">{">="}29999</div>
-            <div
-            onClick={()=>filterByPrice(49999)}
-            className="items">{">="}49999</div>
-            <div
-            onClick={()=>filterByPrice(69999)}
-            className="items">{">="}69999</div>
-            <div
-            onClick={()=>filterByPrice(89999)}
-            className="items">{">="}89999</div>
-            
+             className="items">Electronics</div>
+           <div
+            onClick={()=>filterByCategory("women's clothing")}
+    
+             className="items">Women's</div>
+          
             </div>
           )
         }

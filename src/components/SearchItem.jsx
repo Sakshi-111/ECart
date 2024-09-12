@@ -2,8 +2,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 
-import Product from './Product';
+
 import useGetData from './useGetData';
+import Product from './Productt';
 
 const SearchItem = ({cart, setCart}) => {
   // console.log(useParams())

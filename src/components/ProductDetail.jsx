@@ -4,8 +4,9 @@ import { useParams } from "react-router-dom";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import Product from "./Product";
+
 import useGetData from "./useGetData";
+import Product from "./Productt";
 
 const ProductDetail = ({ cart, setCart }) => {
   const items = useGetData()
