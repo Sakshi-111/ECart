@@ -6,7 +6,7 @@ import App from './Ap'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
  <div className='transitions'>
-<Ap />
+<App />
  </div>
   
  
