@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import Product from './components/Product';
+
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ProductDetail from './components/ProductDetail';
 import Cart from './components/Cart';
 import SearchItem from './components/SearchItem';
 import useGetData from './components/useGetData';
+import Product from './components/Product';
 
 const App = () => {
   const items = useGetData(); 
