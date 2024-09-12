@@ -1,11 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
+
 import './index.css'
+import App from './Ap'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
  <div className='transitions'>
-<App />
+<Ap />
  </div>
   
  
