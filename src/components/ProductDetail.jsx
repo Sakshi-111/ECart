@@ -23,7 +23,7 @@ const ProductDetail = ({ cart, setCart }) => {
   
         // Now we use the found product's category for related products
         const relatedProducts = items.filter(
-          (item) => item.category === filterProduct[0].category && item.id !== filterProduct[0].id
+          (item) => item?.category === filterProduct[0]?.category && item?.id !== filterProduct[0]?.id
         );
         
         setRelatedProducts(relatedProducts);

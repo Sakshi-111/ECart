@@ -1,30 +1,54 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import React, { useCallback } from 'react';
+import { Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+const ProductCard = ({ product, onAddToCart }) => (
+  <div className="w-full sm:w-1/2 md:w-1/3 lg:w-1/4 p-4">
+    <div className="bg-white rounded-lg shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg h-full flex flex-col">
+      <Link 
+        to={`/product/${product.id}`}
+        className="block w-full h-48 overflow-hidden bg-gray-200 flex items-center justify-center"
+      >
+        <img
+          src={product.image}
+          alt={product.title}
+          className="w-full h-full object-contain transition-transform duration-300 hover:scale-110"
+        />
+      </Link>
+      <div className="p-4 flex-grow flex flex-col justify-between">
+        <div>
+          <h3 className="text-lg font-semibold mb-2 truncate">{product.title}</h3>
+          <p className="text-gray-600 text-sm mb-4 line-clamp-2">{product.description}</p>
+        </div>
+        <div className="flex justify-between items-center mt-auto">
+          <span className="text-xl font-bold text-blue-600">₹{product.price}</span>
+          <button
+            onClick={() => onAddToCart(product)}
+            className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors duration-300"
+          >
+            Add to Cart
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+);
 
 const Product = ({ items, cart, setCart }) => {
-  const addToCart = (id, price, title, description, image) => {
-    const obj = {
-      id,
-      price,
-      title,
-      description,
-      image,
-    };
-    setCart([...cart, obj]);
-    console.log("Cart element = ", cart);
-    toast.success("Item added on cart", {
-      position: "top-right",
+  const addToCart = useCallback((product) => {
+    setCart((prevCart) => [...prevCart, product]);
+    toast.success('Item added to cart', {
+      position: 'top-right',
       autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
       draggable: true,
       progress: undefined,
-      theme: "dark",
+      theme: 'dark',
     });
-  };
+  }, [setCart]);
 
   return (
     <>
@@ -40,56 +64,15 @@ const Product = ({ items, cart, setCart }) => {
         pauseOnHover
         theme="dark"
       />
-      <div className="container my-5">
-        <div className="row">
-          {items.map((product) => {
-            return (
-              <>
-                <div
-                  key={product.id}
-                  className="col-lg-4 col-md-6 my-3 text-center"
-                >
-                  <div className="card  hover:bg-gray-300" style={{ width: "18rem" }}>
-                    <Link
-                      to={`/product/${product.id}`}
-                      style={{
-                        display: "flex",
-                        justifyContent: "center",
-                        alignItems: "center",
-                      }}
-                    >
-                      <img
-                        src={product?.image}
-                        className="card-img-top w-40 h-40"
-                        alt="..."
-                      />
-                    </Link>
-                    <div className="card-body">
-                      <h5 className="card-title">{product.title}</h5>
-                      <p className="card-text">{product.description}</p>
-                      <button className="btn btn-primary mx-3">
-                        ₹ {product.price}
-                      </button>
-                      <button  
-                        onClick={() =>
-                          addToCart(
-                            product.id,
-                            product.price,
-                            product.title,
-                            product.description,
-                            product.image
-                          )
-                        }
-                        className="btn"
-                      >
-                        Add To Cart
-                      </button>
-                    </div>
-                  </div>
-                </div>
-              </>
-            );
-          })}
+      <div className="container mx-auto my-8 px-4">
+        <div className="flex flex-wrap -mx-4">
+          {items.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+              onAddToCart={addToCart}
+            />
+          ))}
         </div>
       </div>
     </>
